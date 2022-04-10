@@ -89,7 +89,8 @@ const transformersFilter = () => {
       ]
 
       //console log objects with taem 'Autobot'
-      const teamAutobot = transformers.filter(char => char.team === 'Autobot')
+      const teamAutobot = transformers.filter(char => char.team === "Autobot")
+
       console.log("\n\n EX 2 - FILTER example. Show transformer objects that have the team property of Autobot\n")
       console.log(teamAutobot)
 }
@@ -180,10 +181,12 @@ const medianMean = () => {
 
     const arrSort = input.sort();
     const mid = Math.ceil(len / 2);
-console.log("mid: " , mid)
-    const median =
+
+    const median = arrSort[mid - 1]
+    console.log("Expected Answer - median: ", median);
+    const median2 =
       len % 2 == 0 ? (arrSort[mid] + arrSort[mid - 1]) / 2 : arrSort[mid - 1];
-    console.log("median: ", median);
+    console.log("Alternate answer - median: ", median2);
 }
 
 medianMean()
