@@ -26,7 +26,27 @@ const transformersMap = () => {
           team: 'Decepticon'
         }
       ];
+
+      // console log form
+      const transFormResult =  transformers.map ((char) => {
+        return char.form;
+      })
+      console.log("\n\n EX 1 - MAP example - Output form property")
+      console.log(transFormResult) 
+
+      //Extra practice
+      const minifiedCharacters = transformers.map((char) => ({
+        name: char.name,
+        team: char.team,
+      }
+      ))
+      console.log("\n EX 1 - MAP example Extra Practice - Show Name & Team from each transformer")
+      console.log(minifiedCharacters)
+
 }
+
+transformersMap()
+
 /*
 Filter Transformers
 Using filter, return an array of transformer objects that have the 'team' property of 'Autobot'
@@ -68,7 +88,13 @@ const transformersFilter = () => {
         }
       ]
 
+      //console log objects with taem 'Autobot'
+      const teamAutobot = transformers.filter(char => char.team === 'Autobot')
+      console.log("\n\n EX 2 - FILTER example. Show transformer objects that have the team property of Autobot\n")
+      console.log(teamAutobot)
 }
+
+transformersFilter()
 
 /*
 Reduce Transformers
@@ -101,9 +127,21 @@ const reduceTransformers = () => {
           team: 'Decepticon'
         }
       ]
+
+        //console log object that has a count for each team of transformer
+        const transformersByTeam = transformers.reduce((acc,cur) => {
+            if (acc[cur.team]) {
+              acc[cur.team]++
+            } else {
+              acc[cur.team] = 1
+            }
+          return acc
+        }, {})
+        console.log("\n\n EX 3 - REDUCE example. Show transformer object that has a count for each team of transformer")
+        console.log(transformersByTeam)
 }
 
-
+reduceTransformers()
 
 /*
 
@@ -114,10 +152,16 @@ Use filter and reduce
 
 //result: 42
 const sumPositiveElement = () => {
+ 
     const input = [ 1, -4, 12, 0, -3, 29, -150]
+    let chain = input.filter(number => number >= 0)
+    .reduce((acc,cur) => acc + cur, 0)
+    console.log("\n\n EX 4 - FILTER plus REDUCE example. Sum of Positive Numbers")
+    console.log(chain)
 }
 
 
+sumPositiveElement()
 
 /* 
 Calculate median and mean
@@ -128,7 +172,21 @@ Use: reduce, sort, Math.abs
 //result: { mean: 38.5, median: 32 }
 const medianMean = () => {
     const input = [12, 46, 32, 64]
+
+    const sum = input.reduce((sum,val) => (sum += val))
+    const len = input.length
+    console.log("\n\n EX 5 - MEAN plus MEDIAN example for input: ", input)
+    console.log("mean: ", sum / len)
+
+    const arrSort = input.sort();
+    const mid = Math.ceil(len / 2);
+console.log("mid: " , mid)
+    const median =
+      len % 2 == 0 ? (arrSort[mid] + arrSort[mid - 1]) / 2 : arrSort[mid - 1];
+    console.log("median: ", median);
 }
+
+medianMean()
 
 
 /*
@@ -139,7 +197,15 @@ Use .map , .split , .join
 //result: 'GRRM'
 const nameInitials = () => {
     const input = 'George Raymond Richard Martin';
-}
+
+    const myArrChain = input.split(" ")
+    .reduce((firstName, fName)=> (firstName += fName[0]),"")
+
+    console.log("\n\n EX 6 - GET NAME INITIALS using .split and .reduce for input: ", input)
+    console.log(myArrChain)
+ }
+
+nameInitials()
 
 /*
 Age difference from the youngest and oldest
@@ -171,5 +237,16 @@ const ageDifference = () => {
           age: 65,
         }
       ];
+
+      const myList = input.map(person => person.age)
+      .sort()
+
+      const len = myList.length
+      const newList = [myList[0], myList[len-1], myList[len-1]-myList[0]]
+      console.log("\n\n EX 7 - AGE DIFFERENCE using .map and .sort: ")
+      console.log(newList)
+
 }
+
+ageDifference()
 
